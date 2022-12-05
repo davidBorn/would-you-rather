@@ -49,7 +49,7 @@ export default function HomePage() {
     };
 
     return (
-        <div className="homepage bg-slate-100 px-[30px] py-[30px]">
+        <div className="homepage bg-slate-100 px-[30px] py-[30px] min-h-screen">
             {authedState !== null ? (
                 <div className="homepage-content flex">
                     <Navigation />

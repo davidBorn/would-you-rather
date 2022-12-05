@@ -9,7 +9,7 @@ export default function CreatePoll() {
     const authedState = useSelector((state) => state.login.authedUser);
 
     return (
-        <div className="homepage bg-slate-100 px-[30px] py-[30px]">
+        <div className="homepage bg-slate-100 px-[30px] py-[30px] min-h-screen">
             {authedState !== null ? (
                 <div className="homepage-content flex">
                     <Navigation />
