@@ -69,11 +69,6 @@ export default function LoginPopup() {
                                         >
                                             <p>{user.name}</p>
                                         </Link>
-                                        <p>
-                                            {authedState === user.id
-                                                ? "true"
-                                                : "false"}
-                                        </p>
                                     </li>
                                 );
                             })}
