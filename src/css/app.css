@@ -155,3 +155,73 @@ a.active .icon-container {
 .answered-qs button.answered p {
     color: #fff;
 }
+
+/* Leaderboard */
+.leaderboard .leaderboard-card {
+    padding: 30px 15px;
+    border-radius: 1.5rem;
+    filter: drop-shadow(rgba(0, 0, 0, 0.07) 0px 4px 3px)
+        drop-shadow(rgba(0, 0, 0, 0.06) 0px 2px 2px);
+    margin-bottom: 24px;
+    margin-top: 24px;
+    position: relative;
+    overflow: hidden;
+    color: #000;
+}
+.leaderboard .leaderboard-card:nth-child(1) {
+    /* create gold gradient */
+    background: linear-gradient(
+        90deg,
+        rgba(255, 215, 0, 1) 0%,
+        rgba(255, 215, 0, 1) 50%,
+        rgba(255, 215, 0, 0.5) 100%
+    );
+}
+.leaderboard .leaderboard-card:nth-child(1):after {
+    content: "1st";
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 20rem;
+    z-index: 1;
+}
+.leaderboard .leaderboard-card:nth-child(2) {
+    /* Create silver gradient */
+    background: linear-gradient(
+        90deg,
+        rgba(192, 192, 192, 1) 0%,
+        rgba(192, 192, 192, 1) 50%,
+        rgba(192, 192, 192, 0.5) 100%
+    );
+}
+.leaderboard .leaderboard-card:nth-child(2):after {
+    content: "2nd";
+    position: absolute;
+    top: 68%;
+    right: 0;
+    transform: translateY(-50%);
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 13rem;
+    z-index: 1;
+}
+.leaderboard .leaderboard-card:nth-child(3) {
+    /* Create bronze gradient */
+    background: linear-gradient(
+        90deg,
+        rgba(205, 127, 50, 1) 0%,
+        rgba(205, 127, 50, 1) 50%,
+        rgba(205, 127, 50, 0.5) 100%
+    );
+}
+.leaderboard .leaderboard-card:nth-child(3):after {
+    content: "3rd";
+    position: absolute;
+    top: 68%;
+    right: 0;
+    transform: translateY(-50%);
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 13rem;
+    z-index: 1;
+}

@@ -143,7 +143,7 @@ export default function UnansweredQuestions() {
                         {unansweredQuestions.length > 0 ? (
                             <div className="w-[100%] text-center">
                                 <button
-                                    className="submit group items-center text-center py-[15px] px-[20px] rounded-3xl bg-white min-h-[78px] border-2 border-[#badda8] hover:bg-[#badda8] ease-in-out inline-block duration-300"
+                                    className="submit group items-center text-center py-[15px] px-[20px] rounded-3xl bg-white border-2 border-[#badda8] hover:bg-[#badda8] ease-in-out inline-block duration-300"
                                     onClick={(e) => {
                                         e.preventDefault();
                                         let allQuestionCards =
