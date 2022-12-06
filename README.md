@@ -6,4 +6,5 @@
 <h2>How to Install</h2>
 <ul>
 <li>Download the repository</li>
-<li>use "yarn start" to start the application on port:3
+  <li>use "yarn start" to start the application on port:3000 in your browser</li>
+  </ul>
