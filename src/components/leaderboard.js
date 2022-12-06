@@ -6,14 +6,12 @@ import { TbQuestionMark } from "react-icons/tb";
 
 const Leaderboard = (props) => {
     const authedState = props.authedState;
-    console.log(authedState);
 
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(getQuestionsAsync());
     }, []);
     const userList = useSelector((state) => state.users);
-    console.log(userList.users);
     const loadingQuestionsState = useSelector(
         (state) => state.questions.loading
     );
@@ -59,7 +57,6 @@ const Leaderboard = (props) => {
         });
         return userScore;
     };
-    console.log(userScore(userList.users, questionsState));
 
     return (
         <div>
