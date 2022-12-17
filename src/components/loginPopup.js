@@ -3,11 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { login, logout } from "../features/login";
 // import { setUsers } from "../features/users";
 import { getUsersAsync } from "../features/users";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 
 // Login popup component
 export default function LoginPopup() {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const location = useLocation();
     // const { isLoggedIn } = useSelector((state) => state.login);
     const userList = useSelector((state) => state.users);
 
@@ -22,9 +24,11 @@ export default function LoginPopup() {
     // };
 
     // Login user
-
+    const origin = location.state?.from.pathname || "/polls";
     const handleLogin = (id) => {
         dispatch(login(id));
+        alert(origin);
+        navigate(origin);
     };
 
     return (
@@ -53,7 +57,7 @@ export default function LoginPopup() {
                                         key={user.id}
                                         className="py-5 px-2 first-of-type:mt-0 text-white group-hover:text-black text-left border-b-[1px] first-of-type:border-t-[1px] border-slate-400 group-hover:border-black flex transition-all duration-200 ease-in hover:bg-slate-100"
                                     >
-                                        <Link to="/polls" tabIndex="-1">
+                                        <div tabIndex="-1">
                                             <div
                                                 className="avatar_img rounded-full w-[50px] h-[50px] mr-3 bg-cover bg-center"
                                                 style={{
@@ -61,14 +65,13 @@ export default function LoginPopup() {
                                                 }}
                                                 alt={user.name}
                                             ></div>
-                                        </Link>
-                                        <Link
+                                        </div>
+                                        <div
                                             className="flex items-center w-[calc(100%_-_50px)]"
-                                            to="/polls"
                                             onClick={() => handleLogin(user.id)}
                                         >
                                             <p>{user.name}</p>
-                                        </Link>
+                                        </div>
                                     </li>
                                 );
                             })}

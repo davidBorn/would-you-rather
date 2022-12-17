@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import { Navigate, useLocation } from "react-router-dom";
 import Navigation from "./navigation";
 import Profile from "./profile";
-import PollForm from "./pollForm";
+import Leaderboard from "./leaderboard";
 
-export default function CreatePoll() {
+export default function NoPage() {
     const authedState = useSelector((state) => state.login.authedUser);
     const location = useLocation();
 
     return (
-        <div className="homepage bg-slate-100 px-[30px] py-[30px] min-h-screen">
+        <div className="homepage bg-slate-100 px-[30px] py-[30px]">
             {authedState !== null ? (
                 <div className="homepage-content flex">
                     <Navigation />
@@ -18,7 +18,9 @@ export default function CreatePoll() {
                         <Profile />
 
                         <div className="homepage-content-main bg-white rounded-3xl md:p-5 px-5 m-[20px]  drop-shadow-md overflow-hidden">
-                            <PollForm />
+                            <h1 className="text-center font-julius text-3xl tracking-wider mb-[40px] mt-4 font-bold">
+                                404
+                            </h1>
                         </div>
                     </div>
                 </div>

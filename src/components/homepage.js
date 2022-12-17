@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { Navigate } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 import Navigation from "./navigation";
 import Profile from "./profile";
 import UnansweredQuestions from "./unansweredQuestions";
@@ -8,6 +8,7 @@ import AnsweredQuestions from "./answeredQuestions";
 
 export default function HomePage() {
     const authedState = useSelector((state) => state.login.authedUser);
+    const location = useLocation();
 
     // If user clicks on Unanswered Questions, then Unanswered Questions will be hidden and Answered Questions will be shown
     const [unansweredQuestionsShown, setUnansweredQuestionsShown] =
@@ -94,7 +95,7 @@ export default function HomePage() {
                     </div>
                 </div>
             ) : (
-                <Navigate to="/" />
+                <Navigate to="/" replace state={{ from: location }} />
             )}
         </div>
     );

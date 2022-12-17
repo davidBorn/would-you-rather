@@ -1,12 +1,13 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Navigate } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 import Navigation from "./navigation";
 import Profile from "./profile";
 import Leaderboard from "./leaderboard";
 
 export default function LeaderboardPage() {
     const authedState = useSelector((state) => state.login.authedUser);
+    const location = useLocation();
 
     return (
         <div className="homepage bg-slate-100 px-[30px] py-[30px]">
@@ -25,7 +26,7 @@ export default function LeaderboardPage() {
                     </div>
                 </div>
             ) : (
-                <Navigate to="/" />
+                <Navigate to="/" replace state={{ from: location }} />
             )}
         </div>
     );
