@@ -27,6 +27,9 @@ export default function UnansweredQuestions() {
             !question.optionTwo.votes.includes(authedState)
     );
 
+    // sort unanswered questions going from most recent timestamp to oldest timestamp
+    unansweredQuestions = unansweredQuestions.sort((a, b) => b.timestamp - a.timestamp);
+
     const loadingFinished = () => {
         document.querySelector(".unanswered-qs").classList.add("show");
     };
@@ -78,6 +81,7 @@ export default function UnansweredQuestions() {
                                     question.author
                                 );
                                 return (
+                             
                                     <div
                                         key={question.id}
                                         id={question.id}

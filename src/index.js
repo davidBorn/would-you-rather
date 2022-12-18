@@ -8,8 +8,7 @@ import {
     BrowserRouter,
     Routes,
     Route,
-    Navigate,
-    Switch,
+    Navigate
 } from "react-router-dom";
 import Homepage from "./components/homepage";
 import CreatePoll from "./components/createPoll";
@@ -26,7 +25,7 @@ root.render(
         <BrowserRouter>
             <Provider store={store}>
                 <Routes>
-                    <Switch>
+               
                         <Route
                             exact
                             activeClassName="active"
@@ -49,7 +48,7 @@ root.render(
                             element={<LeaderboardPage />}
                         />
                         <Route path="*" element={<NoPage />} />
-                    </Switch>
+                    
                 </Routes>
             </Provider>
         </BrowserRouter>

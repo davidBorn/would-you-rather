@@ -26,6 +26,12 @@ export default function UnansweredQuestions() {
             question.optionOne.votes.includes(authedState) ||
             question.optionTwo.votes.includes(authedState)
     );
+
+    // sort unanswered questions going from most recent timestamp to oldest timestamp
+    answeredQuestions = answeredQuestions.sort((a, b) => b.timestamp - a.timestamp);
+
+    console.log(answeredQuestions);
+
     // returns "ansewered" if the votes of the question is greater than 0 else this returns ""
     const userAnswer1 = (question) => {
         if (question.optionOne.votes.includes(authedState)) {
