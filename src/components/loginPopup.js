@@ -27,7 +27,6 @@ export default function LoginPopup() {
     const origin = location.state?.from.pathname || "/polls";
     const handleLogin = (id) => {
         dispatch(login(id));
-        alert(origin);
         navigate(origin);
     };
 
@@ -55,7 +54,7 @@ export default function LoginPopup() {
                                 return (
                                     <li
                                         key={user.id}
-                                        className="py-5 px-2 first-of-type:mt-0 text-white group-hover:text-black text-left border-b-[1px] first-of-type:border-t-[1px] border-slate-400 group-hover:border-black flex transition-all duration-200 ease-in hover:bg-slate-100"
+                                        className="py-5 px-2 first-of-type:mt-0 text-white group-hover:text-black text-left border-b-[1px] first-of-type:border-t-[1px] border-slate-400 group-hover:border-black flex transition-all duration-200 ease-in hover:bg-slate-100 hover:cursor-pointer"
                                     >
                                         <div tabIndex="-1">
                                             <div

@@ -20,7 +20,7 @@ export default function PollForm() {
             author: authedState,
         });
 
-        navigate("/");
+        navigate("/polls");
     };
     return (
         <div className="poll-form-container">

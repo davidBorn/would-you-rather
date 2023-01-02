@@ -4,16 +4,12 @@ import "./index.css";
 import "./css/appOutput.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import {
-    BrowserRouter,
-    Routes,
-    Route,
-    Navigate
-} from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Homepage from "./components/homepage";
 import CreatePoll from "./components/createPoll";
 import LeaderboardPage from "./components/leaderboardPage";
 import NoPage from "./components/noPage";
+import PollDetail from "./components/pollPage";
 
 import { Provider } from "react-redux";
 import store from "./features/store";
@@ -25,30 +21,33 @@ root.render(
         <BrowserRouter>
             <Provider store={store}>
                 <Routes>
-               
-                        <Route
-                            exact
-                            activeClassName="active"
-                            path="/"
-                            element={<App />}
-                        />
-                        <Route
-                            activeClassName="active"
-                            path="polls"
-                            element={<Homepage onLogin />}
-                        />
-                        <Route
-                            activeClassName="active"
-                            path="/add"
-                            element={<CreatePoll />}
-                        />
-                        <Route
-                            activeClassName="active"
-                            path="/leaderboard"
-                            element={<LeaderboardPage />}
-                        />
-                        <Route path="*" element={<NoPage />} />
-                    
+                    <Route
+                        exact
+                        activeClassName="active"
+                        path="/"
+                        element={<App />}
+                    />
+                    <Route
+                        activeClassName="active"
+                        path="polls"
+                        element={<Homepage onLogin />}
+                    />
+                    <Route
+                        activeClassName="active"
+                        path="/add"
+                        element={<CreatePoll />}
+                    />
+                    <Route
+                        activeClassName="active"
+                        path="/leaderboard"
+                        element={<LeaderboardPage />}
+                    />
+                    <Route
+                        activeClassName="active"
+                        path="/polls/:id"
+                        element={<PollDetail />}
+                    />
+                    <Route path="*" element={<NoPage />} />
                 </Routes>
             </Provider>
         </BrowserRouter>

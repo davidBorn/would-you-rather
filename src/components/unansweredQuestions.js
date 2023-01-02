@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getQuestionsAsync } from "../features/questions";
 import { _saveQuestionAnswer } from "../utils/_DATA";
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function UnansweredQuestions() {
     const dispatch = useDispatch();
@@ -28,7 +29,9 @@ export default function UnansweredQuestions() {
     );
 
     // sort unanswered questions going from most recent timestamp to oldest timestamp
-    unansweredQuestions = unansweredQuestions.sort((a, b) => b.timestamp - a.timestamp);
+    unansweredQuestions = unansweredQuestions.sort(
+        (a, b) => b.timestamp - a.timestamp
+    );
 
     const loadingFinished = () => {
         document.querySelector(".unanswered-qs").classList.add("show");
@@ -81,7 +84,6 @@ export default function UnansweredQuestions() {
                                     question.author
                                 );
                                 return (
-                             
                                     <div
                                         key={question.id}
                                         id={question.id}
@@ -96,44 +98,18 @@ export default function UnansweredQuestions() {
                                         <h3 className="mb-[30px]">
                                             Would you Rather:
                                         </h3>
-                                        <ul className="flex justify-between">
-                                            <li className="w-[49%]">
-                                                <button
-                                                    className="flex group optionOne items-center text-center w-[100%] py-[15px] px-[20px] rounded-3xl bg-white min-h-[78px] hover:bg-violet-400 transition-all duration-200 ease-in-out"
-                                                    onClick={(e) => {
-                                                        e.preventDefault();
-                                                        optionSelected(
-                                                            e.target.parentNode
-                                                        );
-                                                    }}
-                                                >
-                                                    <p className="text-center w-[100%] text-black group-hover:text-white transition-all duration-200 ease-in-out">
-                                                        {
-                                                            question.optionOne
-                                                                .text
-                                                        }
-                                                    </p>
-                                                </button>
-                                            </li>
-                                            <li className="w-[49%]">
-                                                <button
-                                                    className="flex group optionTwo items-center text-center w-[100%] py-[15px] px-[20px] rounded-3xl bg-white min-h-[78px] hover:bg-violet-400 transition-all duration-200 ease-in-out"
-                                                    onClick={(e) => {
-                                                        e.preventDefault();
-                                                        optionSelected(
-                                                            e.target.parentNode
-                                                        );
-                                                    }}
-                                                >
-                                                    <p className="text-center w-[100%] text-black group-hover:text-white transition-all duration-200 ease-in-out">
-                                                        {
-                                                            question.optionTwo
-                                                                .text
-                                                        }
-                                                    </p>
-                                                </button>
-                                            </li>
-                                        </ul>
+                                        <p className="text-center mb-[30px]">
+                                            {question.optionOne.text} or ...?
+                                        </p>
+
+                                        <div className="w-[100%] text-center mt-[30px]">
+                                            <Link
+                                                className="hover:text-violet-400 transition-all ease-in-out duration-400"
+                                                to={`/polls/${question.id}`}
+                                            >
+                                                Details
+                                            </Link>
+                                        </div>
                                     </div>
                                 );
                             })
