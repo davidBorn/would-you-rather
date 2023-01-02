@@ -120,63 +120,6 @@ export default function UnansweredQuestions() {
                                 </h3>
                             </div>
                         )}
-                        {unansweredQuestions.length > 0 ? (
-                            <div className="w-[100%] text-center">
-                                <button
-                                    className="submit group items-center text-center py-[15px] px-[20px] rounded-3xl bg-white border-2 border-[#badda8] hover:bg-[#badda8] ease-in-out inline-block duration-300"
-                                    onClick={(e) => {
-                                        e.preventDefault();
-                                        let allQuestionCards =
-                                            document.querySelectorAll(
-                                                ".question-card"
-                                            );
-
-                                        allQuestionCards.forEach((card) => {
-                                            const selectedOption =
-                                                card.querySelectorAll(
-                                                    "button.selected"
-                                                );
-
-                                            if (
-                                                selectedOption.length > 0 &&
-                                                selectedOption != null
-                                            ) {
-                                                const cardId = selectedOption[0]
-                                                    .closest(".question-card")
-                                                    .getAttribute("id");
-
-                                                if (
-                                                    selectedOption[0].classList.contains(
-                                                        "optionOne"
-                                                    )
-                                                ) {
-                                                    handleSubmit(
-                                                        authedState,
-                                                        cardId,
-                                                        "optionOne"
-                                                    );
-                                                }
-                                                if (
-                                                    selectedOption[0].classList.contains(
-                                                        "optionTwo"
-                                                    )
-                                                ) {
-                                                    handleSubmit(
-                                                        authedState,
-                                                        cardId,
-                                                        "optionTwo"
-                                                    );
-                                                }
-                                            }
-                                        });
-                                    }}
-                                >
-                                    <p className="submit text-center w-[100%] text-[#badda8] font-semibold group-hover:text-[#fff] ease-in-out duration-300">
-                                        Submit
-                                    </p>
-                                </button>
-                            </div>
-                        ) : null}
                     </div>
                 </div>
             )}
