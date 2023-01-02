@@ -28,9 +28,9 @@ export default function UnansweredQuestions() {
     );
 
     // sort unanswered questions going from most recent timestamp to oldest timestamp
-    answeredQuestions = answeredQuestions.sort((a, b) => b.timestamp - a.timestamp);
-
-    console.log(answeredQuestions);
+    answeredQuestions = answeredQuestions.sort(
+        (a, b) => b.timestamp - a.timestamp
+    );
 
     // returns "ansewered" if the votes of the question is greater than 0 else this returns ""
     const userAnswer1 = (question) => {

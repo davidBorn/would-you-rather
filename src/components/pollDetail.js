@@ -8,7 +8,7 @@ import { _saveQuestionAnswer } from "../utils/_DATA";
 
 export default function PollDetail() {
     const { id } = useParams();
-    console.log(id);
+
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(getQuestionsAsync());
@@ -24,7 +24,7 @@ export default function PollDetail() {
             question.optionOne.votes.includes(authedState) === false &&
             question.optionTwo.votes.includes(authedState) === false
     );
-    console.log(questionsState);
+
     const question = questionsState.filter((question) => question.id === id)[0];
     const isQuestionAnswered = unansweredQuestions.includes(question);
 
@@ -120,21 +120,21 @@ export default function PollDetail() {
                                 <h3 className="text-2xl text-violet-400">
                                     Submitted successfully!
                                 </h3>
-                                <div class="wrapper">
+                                <div className="wrapper">
                                     <svg
-                                        class="checkmark"
+                                        className="checkmark"
                                         xmlns="http://www.w3.org/2000/svg"
                                         viewBox="0 0 52 52"
                                     >
                                         <circle
-                                            class="checkmark__circle"
+                                            className="checkmark__circle"
                                             cx="26"
                                             cy="26"
                                             r="25"
                                             fill="none"
                                         />
                                         <path
-                                            class="checkmark__check"
+                                            className="checkmark__check"
                                             fill="none"
                                             d="M14.1 27.2l7.1 7.2 16.7-16.8"
                                         />
