@@ -4,7 +4,13 @@ import "./index.css";
 import "./css/appOutput.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import {
+    BrowserRouter,
+    Routes,
+    Route,
+    Navigate,
+    Switch,
+} from "react-router-dom";
 import Homepage from "./components/homepage";
 import CreatePoll from "./components/createPoll";
 import LeaderboardPage from "./components/leaderboardPage";
@@ -44,7 +50,7 @@ root.render(
                     />
                     <Route
                         activeClassName="active"
-                        path="/polls/:id"
+                        path="/questions/question_:id"
                         element={<PollDetail />}
                     />
                     <Route path="*" element={<NoPage />} />

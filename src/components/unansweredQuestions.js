@@ -105,7 +105,7 @@ export default function UnansweredQuestions() {
                                         <div className="w-[100%] text-center mt-[30px]">
                                             <Link
                                                 className="hover:text-violet-400 transition-all ease-in-out duration-400"
-                                                to={`/polls/${question.id}`}
+                                                to={`/questions/question_${question.id}`}
                                             >
                                                 Details
                                             </Link>
