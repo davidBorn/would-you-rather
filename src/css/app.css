@@ -284,3 +284,13 @@ a.active .icon-container {
         box-shadow: inset 0px 0px 0px 30px #7ac142;
     }
 }
+
+/* Answered Question */
+
+#answered-container {
+    transform: scale(0);
+}
+#answered-container.grow {
+    transform: scale(1);
+    transition: all 0.2s ease-in-out;
+}

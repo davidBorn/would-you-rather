@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import { getQuestionsAsync } from "../features/questions";
 import { _saveQuestionAnswer } from "../utils/_DATA";
+import QuestionStats from "./questionStats";
 import NotFound from "./404";
 
 // use props from parent component
@@ -20,17 +21,41 @@ export default function PollDetail() {
     );
 
     const questionsState = useSelector((state) => state.questions.questions);
-    console.log(questionsState);
+
     const unansweredQuestions = questionsState.filter(
         (question) =>
             question.optionOne.votes.includes(authedState) === false &&
             question.optionTwo.votes.includes(authedState) === false
     );
 
-    const question = questionsState.filter((question) => question.id === id)[0];
-    console.log(question);
+    let answeredQuestions = questionsState.filter(
+        (question) =>
+            question.optionOne.votes.includes(authedState) ||
+            question.optionTwo.votes.includes(authedState)
+    );
 
-    const isQuestionAnswered = unansweredQuestions.includes(question);
+    // returns "ansewered" if the votes of the question is greater than 0 else this returns ""
+    const userAnswer1 = (question) => {
+        if (question.optionOne.votes.includes(authedState)) {
+            return "answered";
+        } else {
+            return "";
+        }
+    };
+
+    const userAnswer2 = (question) => {
+        if (question.optionTwo.votes.includes(authedState)) {
+            return "answered";
+        } else {
+            return "";
+        }
+    };
+
+    const question = questionsState.filter((question) => question.id === id)[0];
+
+    const isQuestionUnanswered = unansweredQuestions.includes(question);
+
+    const isQuestionAnswered = answeredQuestions.includes(question);
 
     const users = useSelector((state) => state.users.users);
 
@@ -63,6 +88,18 @@ export default function PollDetail() {
         e.classList.add("selected");
     };
 
+    // if the id submitted-container is present in the DOM, then add the class grow to the element
+    function submittedContainer() {
+        setInterval(() => {
+            const submittedContainer =
+                document.getElementById("answered-container");
+            if (submittedContainer) {
+                clearInterval(submittedContainer);
+                submittedContainer.classList.add("grow");
+            }
+        }, 500);
+    }
+
     return (
         <div className="w-[100%] ">
             {loadingQuestionsState ? (
@@ -78,7 +115,7 @@ export default function PollDetail() {
                                 Question from {author.name}
                             </h2>
                             <div className="questions_container flex justify-center flex-wrap">
-                                {isQuestionAnswered ? (
+                                {isQuestionUnanswered ? (
                                     <div
                                         key={question.id}
                                         id={question.id}
@@ -137,9 +174,11 @@ export default function PollDetail() {
                                         id="submitted-container"
                                         className="w-[100%] text-center"
                                     >
+                                        {submittedContainer()}
                                         <h3 className="text-2xl text-violet-400">
                                             Submitted successfully!
                                         </h3>
+
                                         <div className="wrapper">
                                             <svg
                                                 className="checkmark"
@@ -160,6 +199,68 @@ export default function PollDetail() {
                                                 />
                                             </svg>
                                         </div>
+
+                                        <p className="text-center mb-[15px]">
+                                            Current results for this question:
+                                        </p>
+
+                                        <div
+                                            id="answered-container"
+                                            className="answered-qs"
+                                        >
+                                            <div className="questions_container flex justify-center flex-wrap">
+                                                <div
+                                                    key={question.id}
+                                                    className="text-center w-[49%] py-[30px] px-[15px] bg-slate-700 rounded-3xl drop-shadow-md text-white mb-[20px]"
+                                                >
+                                                    <div
+                                                        className="avatarImage w-[70px] h-[70px] mx-auto mb-[20px] rounded-full bg-cover bg-center"
+                                                        style={{
+                                                            backgroundImage: `url(${avatar})`,
+                                                        }}
+                                                    ></div>
+                                                    <h3 className="mb-[30px]">
+                                                        Would you Rather:
+                                                    </h3>
+                                                    <ul className="flex justify-between">
+                                                        <li className="w-[49%]">
+                                                            <button
+                                                                className={`flex ${userAnswer1(
+                                                                    question
+                                                                )} items-center text-center w-[100%] py-[15px] px-[20px] rounded-3xl bg-white min-h-[78px]`}
+                                                            >
+                                                                <p className="text-center w-[100%] text-black">
+                                                                    {
+                                                                        question
+                                                                            .optionOne
+                                                                            .text
+                                                                    }
+                                                                </p>
+                                                            </button>
+                                                        </li>
+                                                        <li className="w-[49%]">
+                                                            <button
+                                                                className={`flex ${userAnswer2(
+                                                                    question
+                                                                )} items-center text-center w-[100%] py-[15px] px-[20px] rounded-3xl bg-white min-h-[78px]`}
+                                                            >
+                                                                <p className="text-center w-[100%] text-black">
+                                                                    {
+                                                                        question
+                                                                            .optionTwo
+                                                                            .text
+                                                                    }
+                                                                </p>
+                                                            </button>
+                                                        </li>
+                                                    </ul>
+                                                    <QuestionStats
+                                                        question={question}
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
+
                                         <Link
                                             className="text-violet-300 hover:text-violet-400 transition-all duration-200 ease-in-out"
                                             to={`/polls/`}
@@ -168,7 +269,7 @@ export default function PollDetail() {
                                         </Link>
                                     </div>
                                 )}
-                                {isQuestionAnswered ? (
+                                {isQuestionUnanswered ? (
                                     <div className="w-[100%] text-center">
                                         <button
                                             className="submit group items-center text-center py-[15px] px-[20px] rounded-3xl bg-white border-2 border-[#badda8] hover:bg-[#badda8] ease-in-out inline-block duration-300"
